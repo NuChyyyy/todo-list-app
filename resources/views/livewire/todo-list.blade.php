@@ -17,7 +17,7 @@
                             <flux:textarea placeholder="Filter by..." wire:model.defer="editingTitle" />
                             <div class="flex gap-2 mt-1">
                                 <flux:button variant="primary" wire:click="saveEdit" :loading="false">save</flux:button>
-                                <flux:button variant="filled" wire:click="cancelEdit">cancel</flux:button>
+                                <flux:button variant="filled" wire:click="cancelEdit" :loading="false">cancel</flux:button>
                             </div>
                         </div>
                     @endif
