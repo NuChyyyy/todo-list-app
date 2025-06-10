@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoList extends Component
 {
-    public $newTodo;
+    public $newTodo = '';
     public $editingId = null;
     public $editingTitle = '';
     public $editingComment = '';
@@ -96,6 +96,7 @@ class TodoList extends Component
         }
 
         $this->cancelEdit();
+        $this->loadTodos();
     }
     public $showComments = false;
 
