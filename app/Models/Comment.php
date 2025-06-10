@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Todo extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'user_id', 'is_done'];
+    protected $fillable = [
+        'todo_id',
+        'user_id',
+        'body',
+        'image_path',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function comments()
-{
-    return $this->hasMany(\App\Models\Comment::class);
-}
+
+    public function todo()
+    {
+        return $this->belongsTo(Todo::class);
+    }
 }
