@@ -36,7 +36,12 @@
                             @endif
                         </div>
                     </div>
-                    <flux:text class="text-xs mt-1">By {{ $todo->user->name ?? 'ไม่ทราบ' }}</flux:text>
+                    <div class="flex justify-between mt-1">
+                        <flux:text class="text-xs">Create by {{ $todo->user->name ?? 'ไม่ทราบ' }}</flux:text>
+                        @if($todo->is_done)
+                            <flux:text class="text-xs"> Checked by {{ $todo->checker->name ?? 'Unknown' }} at {{ $todo->updated_at->format('d M Y H:i') }} </flux:text>
+                        @endif
+                    </div>
                     <livewire:todo-comments :todo="$todo->toArray()" :key="'todo-comments-' . $todo->id" />
                 </li>
             @endforeach
