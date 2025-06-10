@@ -36,7 +36,8 @@
                                         <flux:icon.pencil class="w-5 h-5" />
                                     </button>
                                     @endif
-                                <button wire:click="deleteTodo({{ $todo->id }})" title="delete your task">
+                                <button onclick="confirm('Are you sure you want to delete this task?') || event.stopImmediatePropagation()" 
+                                wire:click="deleteTodo({{ $todo->id }})" title="delete your task">
                                     <flux:icon.trash class="w-5 h-5 text-red-500" />
                                 </button>
                             @endif

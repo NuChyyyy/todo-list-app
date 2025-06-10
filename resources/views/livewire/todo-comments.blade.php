@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             @if($comment->user_id === auth()->id())
-                                <button wire:click="deleteComment({{ $comment->id }})">
+                                <button onclick="confirm('Are you sure you want to delete this comment?') || event.stopImmediatePropagation()" wire:click="deleteComment({{ $comment->id }})">
                                     <flux:icon.trash class="w-4 h-4 text-red-500 mt-1" title="delete your comment"/>
                                 </button>
                             @endif
