@@ -21,15 +21,15 @@ class TodoComments extends Component
     public $comments = [];
 
     public function mount($todo)
-{
-    if (is_object($todo)) {
-        $this->todoId = $todo->id;
-    } elseif (is_array($todo) && isset($todo['id'])) {
-        $this->todoId = $todo['id'];
-    }
+    {
+        if (is_object($todo)) {
+            $this->todoId = $todo->id;
+        } elseif (is_array($todo) && isset($todo['id'])) {
+            $this->todoId = $todo['id'];
+        }
 
-    $this->loadComments();
-}
+        $this->loadComments();
+    }
 
 
     public function loadComments()
@@ -47,9 +47,12 @@ class TodoComments extends Component
 
     public function addComment()
     {
-        $this->validate([
-            'commentText' => 'required|string|max:500',
+        $validatedData = $this->validate([
+            'commentText' => 'nullable|string|max:500',
             'image' => 'nullable|image|max:2048',
+        ], [
+            'image.max' => 'ขนาดไฟล์รูปภาพต้องไม่เกิน 2MB',
+            'image.image' => 'ไฟล์ต้องเป็นรูปภาพเท่านั้น',
         ]);
 
         $path = $this->image ? $this->image->store('comments', 'public') : null;
