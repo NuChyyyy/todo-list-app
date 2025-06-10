@@ -3,8 +3,8 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:header>
+    <body class="min-h-screen dark:bg-zinc-800">
+        <flux:header stashable sticky class="bg-zinc-800">
             <a href="{{ route('/') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
                 <x-app-logo />
             </a>
