@@ -1,10 +1,10 @@
 <div class="mt-2 pt-1">
         @if ($showComments)
-            <flux:button variant="subtle" wire:click="toggleComments" :loading="false" size="xs" icon:trailing="arrow-up">
+            <flux:button variant="ghost" wire:click="toggleComments" :loading="false" size="xs" icon:trailing="chevron-up">
                 Hide Comments
             </flux:button>
         @else
-            <flux:button variant="subtle" wire:click="toggleComments" :loading="false" size="xs" icon:trailing="arrow-down">
+            <flux:button variant="ghost" wire:click="toggleComments" :loading="false" size="xs" icon:trailing="chevron-down">
                 Show Comments
             </flux:button>
         @endif
@@ -12,7 +12,7 @@
         @if($showComments)
             <flux:textarea wire:model="commentText" rows="auto" placeholder="Write a comment..." />
             <div class="flex justify-between mt-2">
-                <flux:button wire:click="addComment" size="sm" :loading="false">Comment</flux:button>
+                <flux:button wire:click="addComment" size="sm" :loading="false" variant="primary">Comment</flux:button>
                 <flux:input type="file" size="sm" wire:model="image" class="mx-2" />
             </div>
             <div class="mt-4 space-y-3 max-h-72 overflow-y-scroll pr-2">
