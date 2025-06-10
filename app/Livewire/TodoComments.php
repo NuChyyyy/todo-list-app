@@ -47,12 +47,14 @@ class TodoComments extends Component
 
     public function addComment()
     {
-        $validatedData = $this->validate([
-            'commentText' => 'nullable|string|max:500',
+        if (empty($this->commentText) && !$this->image) {
+            $this->addError('commentText', 'Please leave a comment or attach a image.');
+            return;
+        }
+
+        // validate เฉพาะ image (ไม่บังคับข้อความแล้ว)
+        $this->validate([
             'image' => 'nullable|image|max:2048',
-        ], [
-            'image.max' => 'ขนาดไฟล์รูปภาพต้องไม่เกิน 2MB',
-            'image.image' => 'ไฟล์ต้องเป็นรูปภาพเท่านั้น',
         ]);
 
         $path = $this->image ? $this->image->store('comments', 'public') : null;
