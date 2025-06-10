@@ -55,8 +55,14 @@ uncomment ในส่วนนี้ของ file .env
 ```bash
 php artisan migrate --seed
 ```
+6. **Link storage**
+เพื่อให้ใน localhost สารามถแสดงรุปภาพได้
 
-6. **รัน Application**
+```bash
+php artisan storage:link
+```
+
+7. **รัน Application**
 
 ```bash
 composer run dev
