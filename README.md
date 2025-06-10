@@ -36,13 +36,16 @@ copy .env.example .env
 
 การตั้งค่า .env
 uncomment ในส่วนนี้ของ file .env
-`    DB_CONNECTION=sqlite
-    # DB_HOST=127.0.0.1
-    # DB_PORT=3306
-    # DB_DATABASE=your_database_name
-    # DB_USERNAME=root
-    # DB_PASSWORD=
-   `
+
+```
+ DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=your_database_name
+# DB_USERNAME=root
+# DB_PASSWORD=
+```
+
 แล้วตั้งค่าเป็น Database ที่ใช้สำหรับ Connect (โดยเป็น Database ที่ได้สร้างไว้แล้ว)
 
 5. **รัน migration**
