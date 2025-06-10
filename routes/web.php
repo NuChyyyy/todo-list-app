@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-})->name('home');
+})->name('welcome');
 
-Route::view('dashboard', 'dashboard')
+Route::view('/', 'home')
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('/');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

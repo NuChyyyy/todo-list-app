@@ -24,7 +24,7 @@
                         Welcome Back!
                         <p class="fs-5 fw-light mt-1">Let's make another to-do list together</p>
                     </div>
-                    <a href="{{ url('/dashboard') }}" class="col-2 btn btn-primary m-1">
+                    <a href="{{ url('/') }}" class="col-2 btn btn-primary m-1">
                         Start<i class="bi bi-arrow-right p-2"></i>
                     </a>
                 @else
