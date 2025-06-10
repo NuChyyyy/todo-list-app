@@ -36,7 +36,7 @@ class TodoList extends Component
         ]);
 
         $this->newTodo = '';
-        $this->loadTodos(); // 👈 รีโหลด todos
+        $this->loadTodos();
     }
 
     public function deleteTodo($id)
@@ -45,7 +45,7 @@ class TodoList extends Component
 
         if ($todo->user_id === Auth::id()) {
             $todo->delete();
-            $this->loadTodos(); // 👈 รีโหลด todos
+            $this->loadTodos();
         }
     }
 
@@ -55,6 +55,13 @@ class TodoList extends Component
         $todo = Todo::findOrFail($id);
 
         $todo->is_done = !$todo->is_done;
+
+        if ($todo->is_done) {
+            $todo->checked_by = Auth::id();
+        } else {
+            $todo->checked_by = null;
+        }
+
         $todo->save();
         $this->loadTodos();
     }
@@ -88,7 +95,7 @@ class TodoList extends Component
             $todo->save();
         }
 
-        $this->cancelEdit(); // reset state
+        $this->cancelEdit();
     }
     public $showComments = false;
 
@@ -101,5 +108,5 @@ class TodoList extends Component
     {
         return view('livewire.todo-list');
     }
-    
+
 }
