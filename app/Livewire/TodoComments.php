@@ -19,6 +19,8 @@ class TodoComments extends Component
     public $commentText = '';
     public $image;
     public $comments = [];
+    public $editingCommentId = null;
+    public $editingCommentText = '';
 
     public function mount($todo)
     {
@@ -30,7 +32,6 @@ class TodoComments extends Component
 
         $this->loadComments();
     }
-
 
     public function loadComments()
     {
@@ -83,6 +84,45 @@ class TodoComments extends Component
             $comment->delete();
             $this->loadComments();
         }
+    }
+
+    public function editComment($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+
+        if ($comment->user_id !== Auth::id()) {
+            return;
+        }
+
+        $this->editingCommentId = $commentId;
+        $this->editingCommentText = $comment->body;
+    }
+
+    public function updateComment()
+    {
+        $this->validate([
+            'editingCommentText' => 'string|max:500',
+        ]);
+
+        $comment = Comment::findOrFail($this->editingCommentId);
+
+        if ($comment->user_id !== Auth::id()) {
+            return;
+        }
+
+        $comment->update([
+            'body' => $this->editingCommentText,
+        ]);
+
+        $this->editingCommentId = null;
+        $this->editingCommentText = '';
+        $this->loadComments();
+    }
+
+    public function cancelEdit()
+    {
+        $this->editingCommentId = null;
+        $this->editingCommentText = '';
     }
 
     public function render()
